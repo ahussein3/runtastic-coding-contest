@@ -12,5 +12,19 @@ export default Ember.Object.extend({
     }
 
     return parts.join('-');
-  }.property('isAscending', 'isActive')
+  }.property('isAscending', 'isActive'),
+
+  className: function () {
+    var classes = [];
+
+    if (this.get('isActive')) {
+      classes.push('active');
+    }
+
+    if (this.get('wide')) {
+      classes.push('wide');
+    }
+
+    return classes.join(' ');
+  }.property('isActive', 'wide')
 });

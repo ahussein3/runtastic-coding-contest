@@ -9,15 +9,26 @@ export default Ember.ArrayController.extend({
   objectAt: function (index) {
     var perPage = this.get('perPage'),
         pageNumber = Math.floor(index / perPage),
-        indexOnPage = index % perPage;
+        indexOnPage = index % perPage,
+        model = this.get('model'),
+        pagePromise;
+
+    if (index in model) {
+      return model[index];
+    }
+
+    pagePromise = this.store.find('run-session', {
+      sort_by: this.get('pagination.sort_by'),
+      order: this.get('pagination.order'),
+      page: pageNumber + 1
+    });
 
     return DS.PromiseObject.create({
-      promise: this.store.find('run-session', {
-        sort_by: this.get('pagination.sort_by'),
-        order: this.get('pagination.order'),
-        page: pageNumber + 1
-      }).then(function (runSessions) {
-        return runSessions.objectAt(indexOnPage);
+      promise: pagePromise.then(function (runSessions) {
+        var runSession = runSessions.objectAt(indexOnPage);
+
+        model[index] = runSession
+        return runSession;
       })
     });
   },

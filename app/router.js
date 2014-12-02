@@ -7,7 +7,9 @@ var Router = Ember.Router.extend({
 
 Router.map(function() {
   this.resource('run-sessions-sorting', { path: ':sorting' }, function () {
-    this.resource('run-sessions-page', { path: ':page' });
+    this.resource('run-sessions-page', { path: ':page' }, function () {
+      this.resource('run-session', { path: ':id' });
+    });
   });
 });
 

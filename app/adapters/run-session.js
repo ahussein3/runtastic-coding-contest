@@ -2,6 +2,7 @@ import ApplicationAdapter from './application';
 
 var promises = {};
 var meta = {};
+var lastUid;
 
 export default ApplicationAdapter.extend({
   findQuery: function (store, model, query) {
@@ -13,13 +14,17 @@ export default ApplicationAdapter.extend({
       promises[uid] = this._super.apply(this, arguments);
     }
 
-    promises[uid].then(function (data) {
-      if (data.meta) {
-        meta[uid] = data.meta;
-      }
+    if (lastUid !== uid) {
+      lastUid = uid;
 
-      store.metaForType('run-session', meta[uid]);
-    });
+      promises[uid].then(function (data) {
+        if (data.meta) {
+          meta[uid] = data.meta;
+        }
+
+        store.metaForType('run-session', meta[uid]);
+      });
+    }
 
     return promises[uid];
   }

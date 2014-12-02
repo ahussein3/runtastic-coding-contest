@@ -1,6 +1,9 @@
 import Ember from 'ember';
 
 export default Ember.Component.extend({
+  classNames: ['sessions-list'],
+  height: 300,
+
   listView: Ember.computed.alias('childViews.firstObject'),
   maxScrollTop: Ember.computed.alias('listView.maxScrollTop'),
 
@@ -19,6 +22,14 @@ export default Ember.Component.extend({
         scrollRatio = scrollTop / maxScrollTop;
 
     this.set('currentPage', Math.ceil(scrollRatio * this.get('availablePages')) || 1);
-  }
+  },
+
+  initHeightCalculation: function () {
+    Ember.$(window).resize(this.calculateHeight.bind(this));
+  }.on('init'),
+
+  calculateHeight: function () {
+    this.set('height', this.$().height());
+  }.on('didInsertElement')
 
 });

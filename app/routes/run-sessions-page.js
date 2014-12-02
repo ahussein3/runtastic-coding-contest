@@ -14,14 +14,9 @@ export default Ember.Route.extend({
   },
   setupController: function (controller, runSessions) {
     controller.setProperties({
+      model: [],
       currentPage: this.paramsFor(this.routeName).page,
       pagination: this.store.metadataFor('runSession').pagination
-    });
-  },
-  resetController: function (controller) {
-    controller.setProperties({
-      currentPage: null,
-      pagination: null
     });
   }
 });

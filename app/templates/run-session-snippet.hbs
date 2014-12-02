@@ -1,5 +1,28 @@
 {{#if isPending}}
-Loading...
+  Loading...
 {{else}}
-  <b>{{id}}</b> {{startTime}} - duration: {{duration}} - distance: {{distance}}
+  {{#link-to 'run-session' this}}
+    <span class="wide">
+      <span>
+        <b>{{format-date startTime}}</b>
+        {{format-time startTime}}
+      </span>
+    </span>
+    <span class="align-right">
+      <span>
+        {{format-duration duration}}
+      </span>
+    </span>
+    <span>
+      <span>
+        {{format-time endTime}}
+      </span>
+    </span>
+    <span>
+      <span>
+        {{distance}}
+      </span>
+    </span>
+    <span></span>
+  {{/link-to}}
 {{/if}}

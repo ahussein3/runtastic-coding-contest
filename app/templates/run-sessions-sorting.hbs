@@ -1,7 +1,10 @@
-{{#each options}}
-  {{#link-to 'run-sessions-sorting' slug}}
-    {{label}} - {{isActive}} - {{isAscending}}
-  {{/link-to}} |
-{{/each}}
+<div class="sorting">
+  {{#each options}}
+    {{#link-to 'run-sessions-sorting' slug class=className~}}
+      <span {{bind-attr class=':order :ion-arrow-down-b isAscending:reverse'}}></span>
+      {{~label~}}
+    {{/link-to}}
+  {{/each}}
+</div>
 
 {{outlet}}
