@@ -20,14 +20,16 @@ export default Ember.Route.extend({
     var types = [];
 
     for (var i = 0; i < 7; i++) {
-      types = types.concat(sportTypes.map(function(sportType){
-        return {
-          id: sportType.id + (i*10),
-          icon: sportType.icon
-        }
-      }));
+      types = types.concat(sportTypes.map(this.cloneSportType.bind(i)));
     }
 
     return this.store.pushMany('sportType', types);
+  },
+
+  cloneSportType: function(sportType){
+    return {
+      id: sportType.id + (this * 10),
+      icon: sportType.icon
+    };
   }
 });

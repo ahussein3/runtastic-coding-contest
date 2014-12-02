@@ -14,7 +14,8 @@
     "ember-qunit-notifications": "0.0.4",
     "qunit": "~1.15.0",
     "ionicons": "~1.5.2",
-    "moment-duration-format": "~1.3.0"
+    "moment-duration-format": "~1.3.0",
+    "moment": "~2.8.4"
   },
   "resolutions": {
     "handlebars": "2.0.0",
