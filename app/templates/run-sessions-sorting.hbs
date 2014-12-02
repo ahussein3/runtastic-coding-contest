@@ -1,8 +1,8 @@
 <div class="sorting">
-  {{#each options}}
-    {{#link-to 'run-sessions-sorting' slug class=className~}}
-      <span {{bind-attr class=':order :ion-arrow-down-b isAscending:reverse'}}></span>
-      {{~label~}}
+  {{#each option in options}}
+    {{#link-to 'run-sessions-sorting' option.slug class=option.className~}}
+      <span {{bind-attr class=':order :ion-arrow-down-b option.isAscending:reverse'}}></span>
+      {{~option.label~}}
     {{/link-to}}
   {{/each}}
 </div>

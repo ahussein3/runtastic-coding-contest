@@ -12,7 +12,8 @@ export default Ember.Route.extend({
 
     return this.store.findQuery('runSession', params);
   },
-  setupController: function (controller, runSessions) {
+
+  setupController: function (controller) {
     controller.setProperties({
       model: [],
       currentPage: parseInt(this.paramsFor(this.routeName).page),

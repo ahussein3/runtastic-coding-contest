@@ -9,12 +9,14 @@ export default Ember.ArrayController.extend({
   objectAt: function (index) {
     var perPage = this.get('perPage'),
         pageNumber = Math.floor(index / perPage),
+        isLastOnPage = index && index % (perPage - 1) === 0,
         indexOnPage = index % perPage,
         model = this.get('model'),
         pagePromise,
         runSession;
 
     if (index in model) {
+      model[index].set('lastOnPage', isLastOnPage);
       return model[index];
     }
 
@@ -29,10 +31,7 @@ export default Ember.ArrayController.extend({
         var runSession = runSessions.objectAt(indexOnPage);
 
         model[index] = runSession;
-
-        if (index && index % (perPage - 1) === 0) {
-          runSession.set('lastOnPage', true);
-        }
+        runSession.set('lastOnPage', isLastOnPage);
 
         return runSession;
       })
@@ -41,9 +40,10 @@ export default Ember.ArrayController.extend({
     return runSession;
   },
 
-  currentPageChanged: function () {
-    if (this.get('currentPage')) {
+  actions: {
+    updateURL: function () {
       this.replaceRoute('run-sessions-page', this.get('currentPage'));
     }
-  }.observes('currentPage')
+  }
+
 });

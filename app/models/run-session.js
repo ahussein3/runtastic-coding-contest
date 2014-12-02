@@ -8,5 +8,5 @@ export default DS.Model.extend({
   duration: a('number'),
   distance: a('number'),
   encodedTrace: a(),
-  sportTypeId: a()
+  sportType: DS.belongsTo('sportType')
 });

@@ -12,11 +12,13 @@ export default Ember.Component.extend({
   }.property('perPage', 'itemHeight'),
 
   calculateHeight: function () {
-    this.set('height', this.$().height());
-    Ember.$(window).resize(this.calculateHeight.bind(this));
-    Ember.run.later(function(){
-      this.trigger('didInsertList');
-    }.bind(this));
+    if (this.element) {
+      this.set('height', this.element.clientHeight);
+      Ember.$(window).resize(this.calculateHeight.bind(this));
+      Ember.run.later(function(){
+        this.trigger('didInsertList');
+      }.bind(this));
+    }
   }.on('didInsertElement'),
 
   initPageCounter: function () {
@@ -28,9 +30,13 @@ export default Ember.Component.extend({
 
   calculateCurrentPage: function (_scrollTop) {
     var scrollTop = _scrollTop || 0,
-        currentPage = (scrollTop / this.get('itemHeight') / this.get('perPage')) + 1;
+        currentPage = (scrollTop / this.get('itemHeight') / this.get('perPage')) + 1,
+        lastPage = this.get('currentPage');
 
-    this.set('currentPage', Math.round(currentPage));
+    if (lastPage !== Math.round(currentPage)) {
+      this.set('currentPage', Math.round(currentPage));
+      Ember.run.debounce(this, this.sendAction, 500);
+    }
   },
 
   gotoPage: function (number) {

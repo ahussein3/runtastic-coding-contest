@@ -13,18 +13,25 @@
         {{format-duration duration}}
       </span>
     </span>
-    <span>
+    <span class="align-right">
       <span>
         {{format-time endTime}}
       </span>
     </span>
-    <span>
+    <span class="align-right">
       <span>
-        {{distance}}
+        {{format-distance distance}}
       </span>
     </span>
-    <span>
-      {{sportTypeId}}
+    <span class="align-right">
+      <span>
+        {{#if encodedTrace}}
+          <em class="ion-map"></em>
+        {{/if}}
+        {{#if sportType}}
+          <em {{bind-attr class=":sport sportType.icon"}}></em>
+        {{/if}}
+      </span>
     </span>
   {{/link-to}}
 {{/if}}

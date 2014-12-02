@@ -1,0 +1,47 @@
+.overlay {
+  position: fixed;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  background: fade(#2c3e50, 20%);
+  z-index: 10;
+  display: flex;
+}
+
+.modal {
+  background: white;
+  width: 300px;
+  margin: 0 auto;
+  align-self: center;
+  border-radius: 5px;
+  box-shadow: 0 2px 0 fade(#2c3e50, 20%);
+
+  a {
+    font-weight: bold;
+    display: block;
+    color: #e74c3c;
+    text-align: center;
+    padding: 15px 0px;
+    transition: 0.2s all;
+    text-decoration: none;
+    border-top: 1px solid lighten(#2c3e50, 65%);
+  }
+
+  .table {
+    display: flex;
+    flex-wrap: wrap;
+
+    p {
+      width: 50%;
+      box-sizing: border-box;
+      padding-left: 10px;
+      color: #2980b9;
+
+      b {
+        display: block;
+        color: #2c3e50;
+      }
+    }
+  }
+}

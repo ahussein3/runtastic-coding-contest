@@ -1,1 +1,28 @@
-{{outlet}}
+<div class="overlay">
+  <div class="modal">
+    {{#if encodedTrace}}
+      {{google-map path=encodedTrace}}
+    {{/if}}
+    <div class="table">
+      <p>
+        Start:
+        <b>{{format-date startTime}}<br />{{format-time startTime}}</b>
+      </p>
+      <p>
+        End:
+        <b>{{format-date endTime}}<br />{{format-time endTime}}</b>
+      </p>
+      <p>
+        Duration:
+        <b>{{format-duration duration}}</b>
+      </p>
+      <p>
+        Distance:
+        <b>{{format-distance distance}}</b>
+      </p>
+    </div>
+    {{#link-to 'run-sessions-page'}}
+      Close
+    {{/link-to}}
+  </div>
+</div>

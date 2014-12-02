@@ -21,7 +21,7 @@ var options = [
   },
   {
     id: 'encoded_trace',
-    label: 'Trace'
+    label: 'Map'
   }
 ].map(function (data) {
   return SortingOption.create(data);
@@ -31,12 +31,12 @@ export default Ember.Route.extend({
   model: function (params) {
     return params.sorting;
   },
-  afterModel: function () {
-    var page = this.paramsFor('run-sessions-page').page;
+  afterModel: function (model, transition) {
+    var sessionsPage = transition.state.handlerInfos.findBy('name', 'run-sessions-page');
 
-    Ember.run.later(function () {
-      this.replaceWith('run-sessions-page', page || '1');
-    }.bind(this));
+    if (!sessionsPage) {
+      this.replaceWith('run-sessions-page', 1);
+    }
   },
   setupController: function (controller) {
     controller.set('options', options);
