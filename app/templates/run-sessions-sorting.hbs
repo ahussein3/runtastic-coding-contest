@@ -1,0 +1,7 @@
+{{#each options}}
+  {{#link-to 'run-sessions-sorting' slug}}
+    {{label}} - {{isActive}} - {{isAscending}}
+  {{/link-to}} |
+{{/each}}
+
+{{outlet}}

@@ -6,6 +6,9 @@ var Router = Ember.Router.extend({
 });
 
 Router.map(function() {
+  this.resource('run-sessions-sorting', { path: ':sorting' }, function () {
+    this.resource('run-sessions-page', { path: ':page' });
+  });
 });
 
 export default Router;

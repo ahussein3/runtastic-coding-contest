@@ -3,7 +3,7 @@ import {
   test
 } from 'ember-qunit';
 
-moduleForComponent('run-sessions-list', 'RunSessionsListComponent', {
+moduleForComponent('sessions-list', 'SessionsListComponent', {
   // specify the other units that are required for this test
   // needs: ['component:foo', 'helper:bar']
 });
