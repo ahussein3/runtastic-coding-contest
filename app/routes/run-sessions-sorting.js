@@ -35,7 +35,9 @@ export default Ember.Route.extend({
     var sessionsPage = transition.state.handlerInfos.findBy('name', 'run-sessions-page');
 
     if (!sessionsPage) {
-      this.replaceWith('run-sessions-page', 1);
+      Ember.run.later(function () {
+        this.replaceWith('run-sessions-page', 1);
+      }.bind(this));
     }
   },
   setupController: function (controller) {
