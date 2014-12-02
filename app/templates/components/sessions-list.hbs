@@ -1,5 +1,9 @@
-{{view 'run-session-list' content=content height=height}}
+{{#if height}}
+  {{view 'run-session-list' content=content height=height rowHeight=itemHeight}}
+{{/if}}
 
 <div class="pages">
-  {{currentPage}} from {{availablePages}}
+  <span {{action 'prevPage'}} class="ion-chevron-up"></span>
+  <b>{{currentPage}} of {{availablePages}}</b>
+  <span {{action 'nextPage'}} class="ion-chevron-down"></span>
 </div>

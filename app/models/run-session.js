@@ -6,5 +6,7 @@ export default DS.Model.extend({
   startTime: a('moment'),
   endTime: a('moment'),
   duration: a('number'),
-  distance: a('number')
+  distance: a('number'),
+  encodedTrace: a(),
+  sportTypeId: a()
 });

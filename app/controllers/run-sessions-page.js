@@ -11,7 +11,8 @@ export default Ember.ArrayController.extend({
         pageNumber = Math.floor(index / perPage),
         indexOnPage = index % perPage,
         model = this.get('model'),
-        pagePromise;
+        pagePromise,
+        runSession;
 
     if (index in model) {
       return model[index];
@@ -23,14 +24,21 @@ export default Ember.ArrayController.extend({
       page: pageNumber + 1
     });
 
-    return DS.PromiseObject.create({
+    runSession = DS.PromiseObject.create({
       promise: pagePromise.then(function (runSessions) {
         var runSession = runSessions.objectAt(indexOnPage);
 
-        model[index] = runSession
+        model[index] = runSession;
+
+        if (index && index % (perPage - 1) === 0) {
+          runSession.set('lastOnPage', true);
+        }
+
         return runSession;
       })
     });
+
+    return runSession;
   },
 
   currentPageChanged: function () {

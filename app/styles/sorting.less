@@ -16,9 +16,10 @@
     border-left: none;
     text-decoration: none;
     transition: 0.2s all;
-    color: #2980b9;
+    color: white;
     text-align: center;
     white-space: nowrap;
+    background: #3498db;
 
     &:first-of-type {
       border-left: 1px solid #2980b9;
@@ -31,7 +32,6 @@
 
     .order {
       display: inline-block;
-      opacity: 0;
       transition: 0.2s all;
       width: 0;
       line-height: 1em;
@@ -47,11 +47,9 @@
     }
 
     &.active {
-      background: #3498db;
-      color: white;
+      background: #2980b9;
 
       .order {
-        opacity: 1;
         width: 1em;
         color: white;
         margin-left: -0.5em;

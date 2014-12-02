@@ -1,7 +1,7 @@
 {{#if isPending}}
-  Loading...
+  <em class="loading ion-loading-b"></em>
 {{else}}
-  {{#link-to 'run-session' this}}
+  {{#link-to 'run-session' this class=lastOnPage}}
     <span class="wide">
       <span>
         <b>{{format-date startTime}}</b>
@@ -23,6 +23,8 @@
         {{distance}}
       </span>
     </span>
-    <span></span>
+    <span>
+      {{sportTypeId}}
+    </span>
   {{/link-to}}
 {{/if}}
