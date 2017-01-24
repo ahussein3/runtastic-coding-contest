@@ -1,5 +1,7 @@
 # Runtastic-coding-contest
 
+[![Greenkeeper badge](https://badges.greenkeeper.io/vectart/runtastic-coding-contest.svg)](https://greenkeeper.io/)
+
 This README outlines the details of collaborating on this Ember application.
 A short introduction of this app could easily go here.
 
